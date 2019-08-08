@@ -1,3 +1,4 @@
+
 var result=`/*
  *面试官你好，我是余晨阳
  *我将以动画的形式介绍我自己
@@ -22,9 +23,10 @@ var n=0
 var id =setInterval(() => {
   n+=1
   code.innerHTML=result.substring(0,n)
-  code.innerHTML=code.innerHTML.replace('html','<span style="color:red;">html</span>')
+  code.innerHTML=
+    Prism.highlight(code.innerHTML, Prism.languages.css, 'css')
+
   styleTag.innerHTML=result.substring(0,n)
-  console.log('一轮')
   if (n>=result.length) {
     window.clearInterval(id)
   }
