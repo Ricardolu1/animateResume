@@ -17,7 +17,50 @@ html{
   border:1px solid red;
   padding:16px;
 }
+
+/* 我需要一些代码高亮*/
+
+.token.selector{
+  color:#690;
+}
+.token.property{
+ color:#905;
+}
+.token.function{
+ color:#dd4a68;
+}
+
+/* 加点3D 效果*/
+#code{
+  transform:rotate(360deg);
+}
+/* 不玩了，我来介绍一下我自己吧 */
+/* 我需要一张白纸 */
 `
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var n=0
 var id =setInterval(() => {
@@ -25,10 +68,34 @@ var id =setInterval(() => {
   code.innerHTML=result.substring(0,n)
   code.innerHTML=
     Prism.highlight(code.innerHTML, Prism.languages.css, 'css')
-
   styleTag.innerHTML=result.substring(0,n)
   if (n>=result.length) {
     window.clearInterval(id)
+    fn2()
+    fn3()
   }
   
 }, 10);
+
+function fn2() {
+  var paper =document.createElement('div')
+  paper.id='paper'
+  document.body.appendChild(paper)
+}
+function fn3() {
+  var result=`
+#paper{
+  width:100px; height: 100px; 
+  background: red;
+}
+`
+  var n=0
+  var id=setInterval(() => {
+    n+=1
+    console.log(result.substring(0,n))
+    code.innerHTML=code.innerHTML+result[n-1]
+    if (n>=result.length) {
+      window.clearInterval(id)
+    }
+  }, 10);
+}
