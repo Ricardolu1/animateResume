@@ -1,7 +1,7 @@
 /* 把代码写到#code和style标签里*/ 
 function writeCode(code) {
-  var n=0
-  var id =setInterval(() => {
+  let n=0
+  let id =setInterval(() => {
   n+=1
   code.innerHTML=result.substring(0,n)
   code.innerHTML=
