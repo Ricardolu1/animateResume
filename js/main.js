@@ -1,3 +1,8 @@
+/* 把代码写到#code和style标签里*/ 
+function writeCode(code) {
+  
+}
+
 
 var result=`/*
  *面试官你好，我是余晨阳
@@ -72,7 +77,7 @@ var id =setInterval(() => {
   if (n>=result.length) {
     window.clearInterval(id)
     fn2()
-    fn3()
+    fn3(result)
   }
   
 }, 10);
@@ -82,7 +87,7 @@ function fn2() {
   paper.id='paper'
   document.body.appendChild(paper)
 }
-function fn3() {
+function fn3(preResult) {
   var result=`
 #paper{
   width:100px; height: 100px; 
@@ -92,8 +97,10 @@ function fn3() {
   var n=0
   var id=setInterval(() => {
     n+=1
-    console.log(result.substring(0,n))
-    code.innerHTML=code.innerHTML+result[n-1]
+    code.innerHTML=preResult+result.substring(0,n)//用了闭包
+    code.innerHTML=
+      Prism.highlight(code.innerHTML, Prism.languages.css, 'css')
+      styleTag.innerHTML=preResult+result.substring(0,n)
     if (n>=result.length) {
       window.clearInterval(id)
     }
