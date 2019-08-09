@@ -1,18 +1,17 @@
 /* 把代码写到#code和style标签里*/ 
-function writeCode(code,fn2) {
-  let domCode=document.querySelector('#code')
-  let n=0
-  console.log('设置闹钟')
-  let id =setInterval(() => {
-    n+=1
-    console.log('开始写代码')
-    domCode.innerHTML=
-      Prism.highlight(code.substring(0,n), Prism.languages.css, 'css')
-    styleTag.innerHTML=code.substring(0,n)
-    if (n>=result.length) {
+function writeCode(code) {
+  var n=0
+  var id =setInterval(() => {
+  n+=1
+  code.innerHTML=result.substring(0,n)
+  code.innerHTML=
+    Prism.highlight(code.innerHTML, Prism.languages.css, 'css')
+  styleTag.innerHTML=result.substring(0,n)
+  if (n>=result.length) {
     window.clearInterval(id)
     fn2()
-    } 
+    fn3(result)
+  }
   }, 10);
 }
 
@@ -60,11 +59,6 @@ html{
 
 
 
-writeCode(result,function() {
-  console.log('qqqq')
-  fn2()
-  console.log('wwwww')
-})
 
 
 
@@ -85,14 +79,26 @@ writeCode(result,function() {
 
 
 
-
+var n=0
+var id =setInterval(() => {
+  n+=1
+  code.innerHTML=result.substring(0,n)
+  code.innerHTML=
+    Prism.highlight(code.innerHTML, Prism.languages.css, 'css')
+  styleTag.innerHTML=result.substring(0,n)
+  if (n>=result.length) {
+    window.clearInterval(id)
+    fn2()
+    fn3(result)
+  }
+  
+}, 10);
 
 function fn2() {
   var paper =document.createElement('div')
   paper.id='paper'
   document.body.appendChild(paper)
 }
-
 function fn3(preResult) {
   var result=`
 #paper{
