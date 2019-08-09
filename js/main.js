@@ -1,17 +1,16 @@
 /* 把代码写到#code和style标签里*/ 
-function writeCode(code) {
+function writeCode(prefix,code,fn) {
+  let domCode=document.querySelector('#code')
   let n=0
   let id =setInterval(() => {
-  n+=1
-  code.innerHTML=result.substring(0,n)
-  code.innerHTML=
-    Prism.highlight(code.innerHTML, Prism.languages.css, 'css')
-  styleTag.innerHTML=result.substring(0,n)
-  if (n>=result.length) {
+    n+=1
+    domCode.innerHTML=
+      Prism.highlight(prefix+code.substring(0,n), Prism.languages.css, 'css')
+    styleTag.innerHTML=prefix+code.substring(0,n)
+    if (n>=code.length) {
     window.clearInterval(id)
-    fn2()
-    fn3(result)
-  }
+    fn.call()
+    } 
   }, 10);
 }
 
@@ -54,67 +53,84 @@ html{
 /* 不玩了，我来介绍一下我自己吧 */
 /* 我需要一张白纸 */
 `
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var n=0
-var id =setInterval(() => {
-  n+=1
-  code.innerHTML=result.substring(0,n)
-  code.innerHTML=
-    Prism.highlight(code.innerHTML, Prism.languages.css, 'css')
-  styleTag.innerHTML=result.substring(0,n)
-  if (n>=result.length) {
-    window.clearInterval(id)
-    fn2()
-    fn3(result)
-  }
-  
-}, 10);
-
-function fn2() {
-  var paper =document.createElement('div')
-  paper.id='paper'
-  document.body.appendChild(paper)
-}
-function fn3(preResult) {
-  var result=`
+var result2=`
 #paper{
   width:100px; height: 100px; 
   background: red;
 }
 `
-  var n=0
-  var id=setInterval(() => {
-    n+=1
-    code.innerHTML=preResult+result.substring(0,n)//用了闭包
-    code.innerHTML=
-      Prism.highlight(code.innerHTML, Prism.languages.css, 'css')
-      styleTag.innerHTML=preResult+result.substring(0,n)
-    if (n>=result.length) {
-      window.clearInterval(id)
-    }
-  }, 10);
+
+
+
+
+
+writeCode('',result,()=>{
+  creatPaper(()=>{
+    writeCode(result,result2,()=>{})
+  })
+})
+
+
+function creatPaper(fn2) {
+  var paper =document.createElement('div')
+  paper.id='paper'
+  document.body.appendChild(paper)
+  fn2()
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function fn3(preResult) {
+
+//   var n=0
+//   var id=setInterval(() => {
+//     n+=1
+//     code.innerHTML=preResult+result.substring(0,n)//用了闭包
+//     code.innerHTML=
+//       Prism.highlight(code.innerHTML, Prism.languages.css, 'css')
+//       styleTag.innerHTML=preResult+result.substring(0,n)
+//     if (n>=result.length) {
+//       window.clearInterval(id)
+//     }
+//   }, 10);
+// }
