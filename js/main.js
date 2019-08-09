@@ -92,7 +92,7 @@ var md = `
 
 # 技能介绍
 
-熟悉JavaScript CSS
+熟悉JavaScript CSS HTML
 
 # 项目介绍
 
